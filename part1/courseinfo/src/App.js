@@ -17,41 +17,43 @@ const App = () => {
   // const part3 = 'State of a component'
   // const exercises3 = 14
 
-  const part1 = {
-    name: 'Fundamentals of React',
-    exercises: 10
-  }
-  const part2 = {
-    name: 'Using props to pass data',
-    exercises: 7
-  }
-  const part3 = {
-    name: 'State of a component',
-    exercises: 14
-  }
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
 
-  const Part = (props) => {
-    console.log(props)
-    return (
-      <div>
-        <p>
-          {props.part.name} {props.part.exercises}
-        </p>
-      </div>
-    )
-  }
+  // const Part = (props) => {
+  //   console.log(props)
+  //   return (
+  //     <div>
+  //       <p>
+  //         {props.parts} {props.part.exercises}
+  //       </p>
+  //     </div>
+  //   )
+  // }
+  const cont = parts.map(x => <p key={x.name}> {x.name + " " + x.exercises} </p>)
 
   const Content = (props) => {
     return (
       <div>
-        <Part part={props.part1} />
-        <Part part={props.part2} />
-        <Part part={props.part3} />
+          {props.cont}
       </div>
     )
   }
 
-  const total = part1.exercises + part2.exercises + part3.exercises
+  const tot = parts.map(x => x.exercises)
+  const total = tot[0] + tot[1] + tot[2]
   const Total = (props) => {
     return (
       <div>
@@ -65,11 +67,7 @@ const App = () => {
   return (
     <div>
       <Header course={course}/>
-      <Content 
-        part1={part1}  
-        part2={part2} 
-        part3={part3} 
-      />
+      <Content cont={cont}/>
       <Total total={total}/>
     </div>
   )
