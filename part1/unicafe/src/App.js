@@ -14,10 +14,12 @@ const Header = props => (
 
 const StatisticRow = (props) => {
   return (
-    <tr>
-      <td> {props.text} </td>
-      <td> {props.value} </td>
-    </tr>
+    <tbody>
+      <tr>
+        <td> {props.text} </td>
+        <td> {props.value} </td>
+      </tr>
+    </tbody>
   )
 }
 const Statistics = (props) => {
