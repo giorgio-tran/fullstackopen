@@ -12,14 +12,22 @@ const Header = props => (
   <h1>{props.text}</h1>
 )
 
-const StatisticLine = (props) => {
+// const StatisticLine = (props) => {
+//   return (
+//     <div>
+//       {props.text} {props.value}
+//     </div>
+//   )
+// }
+
+const StatisticRow = (props) => {
   return (
-    <div>
-      {props.text} {props.value}
-    </div>
+    <tr>
+      <td> {props.text} </td>
+      <td> {props.value} </td>
+    </tr>
   )
 }
-
 const Statistics = (props) => {
   if (props.allClicks.length === 0) {
     return (
@@ -30,11 +38,18 @@ const Statistics = (props) => {
   }
   return (
     <div>
-      <StatisticLine text="good" value={props.good}/>
+      {/* <StatisticLine text="good" value={props.good}/>
       <StatisticLine text="neutral" value={props.neutral}/>
       <StatisticLine text="bad" value={props.bad}/>
       <StatisticLine text="average" value={props.average}/>
-      <StatisticLine text="positive" value={props.positive}/>
+      <StatisticLine text="positive" value={props.positive}/> */}
+      <table>
+        <StatisticRow text="good" value={props.good}/>
+        <StatisticRow text="neutral" value={props.neutral}/>
+        <StatisticRow text="bad" value={props.bad}/>
+        <StatisticRow text="average" value={props.average}/>
+        <StatisticRow text="positive" value={props.positive}/>
+      </table>
     </div>
   )
 }
