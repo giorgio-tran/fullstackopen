@@ -12,8 +12,14 @@ const Header = props => (
   <h1>{props.text}</h1>
 )
 
-const Div = props => (
-  <div>{props.text} {props.number}</div>
+const Statistics = props => (
+  <div>
+    <div>{props.good} {props.goodCount}</div>
+    <div>{props.neutral} {props.neutralCount}</div>
+    <div>{props.bad} {props.badCount}</div>
+    <div>{props.average} {props.averageNum}</div>
+    <div>{props.positive} {props.positiveNum}</div>
+  </div>
 )
 
 const App = () => {
@@ -33,11 +39,7 @@ const App = () => {
 
   //good
   const handleGood = () => {
-    console.log('value', good.value)
-    console.log('count', good.count)
     setGood({value: good.value, count: good.count + 1})
-    console.log('allClicks val', allClicks.value)
-    console.log('allClicks count', allClicks.count)
     setAll({value: allClicks.value.concat(good.value), count: allClicks.count + 1})
   }
   //neutral
@@ -53,7 +55,7 @@ const App = () => {
   //all
   const average = allClicks.value.reduce((a, b) => a + b, 0) / allClicks.value.length
   //positive reviews
-  const positive =  good.count / allClicks.value.length
+  const positive =  good.count / allClicks.value.length * 100
 
   return (
     <div>
@@ -62,12 +64,13 @@ const App = () => {
       <Button onClick={handleNeutral} text="neutral" />
       <Button onClick={handleBad} text="bad"/>
       <Header text="Statistics" />
-      <Div text="good" number={good.count} />
-      <Div text="neutral" number={neutral.count} />
-      <Div text="bad" number={bad.count} />
-      <Div text="all" number={allClicks.count} />
-      <Div text="average" number={average} />
-      <Div text="positive" number={[positive, ' %']} />
+      <Statistics
+        good="good" goodCount={good.count}
+        neutral="neutral" neutralCount={neutral.count}
+        bad="bad" badCount={bad.count}
+        average="average" averageNum={average}
+        positive="positive" positiveNum={[positive, ' %']}
+      />
     </div>
   )
 }
