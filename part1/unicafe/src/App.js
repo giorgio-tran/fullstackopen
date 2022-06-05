@@ -12,6 +12,14 @@ const Header = props => (
   <h1>{props.text}</h1>
 )
 
+const StatisticLine = (props) => {
+  return (
+    <div>
+      {props.text} {props.value}
+    </div>
+  )
+}
+
 const Statistics = (props) => {
   if (props.allClicks.length === 0) {
     return (
@@ -22,11 +30,11 @@ const Statistics = (props) => {
   }
   return (
     <div>
-      <div>{props.good} {props.goodCount}</div>
-      <div>{props.neutral} {props.neutralCount}</div>
-      <div>{props.bad} {props.badCount}</div>
-      <div>{props.average} {props.averageNum}</div>
-      <div>{props.positive} {props.positiveNum}</div>
+      <StatisticLine text="good" value={props.good}/>
+      <StatisticLine text="neutral" value={props.neutral}/>
+      <StatisticLine text="bad" value={props.bad}/>
+      <StatisticLine text="average" value={props.average}/>
+      <StatisticLine text="positive" value={props.positive}/>
     </div>
   )
 }
@@ -75,11 +83,11 @@ const App = () => {
       <Header text="Statistics" />
       <Statistics
         allClicks={allClicks.value}
-        good="good" goodCount={good.count}
-        neutral="neutral" neutralCount={neutral.count}
-        bad="bad" badCount={bad.count}
-        average="average" averageNum={average}
-        positive="positive" positiveNum={[positive, ' %']}
+        good={good.count}
+        neutral={neutral.count}
+        bad={bad.count}
+        average={average}
+        positive={[positive, ' %']}
       />
     </div>
   )
