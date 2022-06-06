@@ -16,6 +16,14 @@ const AnecdoteLine = (props) => {
   )
 }
 
+const VoteCounts = (props) => {
+  return (
+    <div>
+      has {props.counter} votes
+    </div>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -27,17 +35,29 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
   
-  const [selected, setSelected] = useState(0)
+  const [selected, setSelected] = useState({
+    index: 0, arr: Array(anecdotes.length).fill(0)
+  })
+
   //selects a random anecdote
-  const selectAnecdote = () => {
+  const nextAnecdote = () => {
     const random =  Math.floor(Math.random() * anecdotes.length)
-    setSelected(random)
+    setSelected({...selected, index: random})
+  }
+  //adds one to array at selected position
+  const vote = () => {
+    const copy = selected.arr
+    copy[selected.index] += 1
+    setSelected({...selected, arr: copy})
+    console.log(selected.arr)
   }
 
   return (
     <div>
-      <AnecdoteLine text={anecdotes[selected]}/>
-      <Button action={selectAnecdote} text="next anecdote"/>
+      <AnecdoteLine text={anecdotes[selected.index]}/>
+      <VoteCounts counter={selected.arr[selected.index]} />
+      <Button action={nextAnecdote} text="next anecdote"/>
+      <Button action={vote} text="vote"/>
     </div>
   )
 }
