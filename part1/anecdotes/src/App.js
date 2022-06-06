@@ -24,6 +24,16 @@ const VoteCounts = (props) => {
   )
 }
 
+const MainComponent = (props) => {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <AnecdoteLine text={props.text}/>
+      <VoteCounts counter={props.counter} />
+    </div>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -51,13 +61,34 @@ const App = () => {
     setSelected({...selected, arr: copy})
     console.log(selected.arr)
   }
+  
+  //obtaining max value
+  const max = Math.max(...selected.arr)
+  //obtaining index of item with max value
+  const index = selected.arr.indexOf(max)
 
   return (
     <div>
-      <AnecdoteLine text={anecdotes[selected.index]}/>
-      <VoteCounts counter={selected.arr[selected.index]} />
-      <Button action={nextAnecdote} text="next anecdote"/>
-      <Button action={vote} text="vote"/>
+      <MainComponent 
+        title="Anecdote of the Day"
+        text={anecdotes[selected.index]}
+        counter={selected.arr[selected.index]}
+      />
+
+      <Button 
+        action={nextAnecdote} 
+        text="next anecdote"
+      />
+      <Button 
+        action={vote} 
+        text="vote"
+      />
+
+      <MainComponent 
+        title="Anecdote with Most Votes" 
+        text={anecdotes[index]} 
+        counter={max}
+      />
     </div>
   )
 }
