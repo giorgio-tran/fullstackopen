@@ -1,25 +1,47 @@
 import React from 'react'
 import Part from './Part'
 import Total from './Total'
+import Course from './Course'
 
-const Content = ({ parts }) => 
+const Content = ({ courses }) => 
 <>
-  <Part
-    part={parts[0]} 
+  {console.log(courses)}
+  <Course
+    course={courses[0]}
+    name={courses[0].name}
   />
   <Part
-    part={parts[1]} 
+    part={courses[0].parts[0]} 
   />
   <Part
-    part={parts[2]} 
+    part={courses[0].parts[1]} 
+  />
+  <Part
+    part={courses[0].parts[2]} 
   />      
   <Part
-    part={parts[3]}
+    part={courses[0].parts[3]}
   />
   <Total 
-    parts={parts}
-    exercises={parts.exercises} 
+    parts={courses[0].parts}
+    exercises={courses[0].parts} 
   />
+
+<Course
+    course={courses[1]}
+    name={courses[1].name}
+  />
+  <Part
+    part={courses[1].parts[0]} 
+  />
+  <Part
+    part={courses[1].parts[1]} 
+  />
+   <Total 
+    parts={courses[1].parts}
+    exercises={courses[1].parts} 
+  />
+  
 </>
 
 export default Content
