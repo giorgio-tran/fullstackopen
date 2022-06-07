@@ -1,3 +1,31 @@
+const Header = ({ course }) => {
+  return (
+    <div>
+      <p>
+        {course}
+      </p>
+    </div>
+  )
+}
+
+const Content = ({ cont }) => {
+  return (
+    <div>
+        {cont}
+    </div>
+  )
+}
+
+const Total = ({ total }) => {
+  return (
+    <div>
+      <p>
+        Number of exercises {total}
+      </p>
+    </div>
+  )
+}
+
 const App = () => {
   const course = {
     name: 'Half Stack application development',
@@ -16,43 +44,16 @@ const App = () => {
       }
     ]
   }
-
-  const Header = (props) => {
-    return (
-      <div>
-        <p>
-          {props.course.name}
-        </p>
-      </div>
-    )
-  }
   
 
   const cont = course['parts'].map(x => <p key={x.name}> {x.name + " " + x.exercises} </p>)
 
-  const Content = (props) => {
-    return (
-      <div>
-          {props.cont}
-      </div>
-    )
-  }
-
   const tot = course['parts'].map(x => x.exercises)
   const total = tot[0] + tot[1] + tot[2]
-  const Total = (props) => {
-    return (
-      <div>
-        <p>
-          Number of exercises {props.total}
-        </p>
-      </div>
-    )
-  }
 
   return (
     <div>
-      <Header course={course}/>
+      <Header course={course.name}/>
       <Content cont={cont}/>
       <Total total={total}/>
     </div>
