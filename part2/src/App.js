@@ -1,4 +1,4 @@
-import Content from './components/Content'
+import Course from './components/Course'
 
 const App = () => {
   const courses = [
@@ -49,10 +49,8 @@ const App = () => {
 
   return (
     <div>
-      <Content 
+      <Course 
         courses={courses} 
-        name={courses.name}
-        parts={courses.parts} 
       />
     </div>
   )
