@@ -20,6 +20,11 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4
       }
     ]
   }
@@ -27,7 +32,7 @@ const App = () => {
   return (
     <div>
       <Course course={course.name} />
-      <Content parts={course.parts} />
+      <Content parts={course.parts} exercises={course.exercise}/>
     </div>
   )
 }
