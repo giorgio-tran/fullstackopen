@@ -1,3 +1,6 @@
+import Course from './components/Course'
+import Content from './components/Content'
+
 const App = () => {
   const course = {
     id: 1,
@@ -21,5 +24,12 @@ const App = () => {
     ]
   }
 
-  return <Course course={course} />
+  return (
+    <div>
+      <Course course={course.name} />
+      <Content parts={course.parts} />
+    </div>
+  )
 }
+
+export default App
