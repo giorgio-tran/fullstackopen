@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import Filter from './components/Filter'
+import PersonForm from './components/PersonForm'
+import Contacts from './components/Contacts'
 
 const App = () => {
 	const [persons, setPersons] = useState([
-		{
-			name: 'Arto Hellas',
-			number: '8081234567'
-		}
+		{name: 'Arto Hellas', number: '8081234567'},
+		{name: 'dummy dum', number: '8083451234'},
+		{name: 'Sherlock Holmes', number: '8086917890'}
 	])
 	const [newName, setNewName] = useState('')
 	const [newNumber, setNewNumber] = useState('')
@@ -45,68 +47,27 @@ const App = () => {
 	const handleNumberChange = (event) => {
 		setNewNumber(event.target.value)
 	}
-	//const map array
-	const mapArray = (array) => {
-		return (
-			array.map((person) =>
-				<div key={person.name}>
-					{person.name} {person.number}
-				</div>
-			)
-		)
-	}
-	//filter out names
-	const filterByName = persons.filter((person) =>
-		person.name
-			.toLowerCase()
-			.includes(newFilter)
-	)
-
-	const filtering = () => {
-		if (newFilter === null) {
-			return (
-				mapArray(persons)
-			)
-		} else {
-			return (
-				mapArray(filterByName)
-			)
-		}
-	}
 
 	return (
 		<div>
 			<h2>Phonebook</h2>
-			<div>
-				filter shown with:
-				<input
-					value={newFilter}
-					onChange={handleFilterChange}
-				/>
-			</div>
+			<Filter 
+				filter={newFilter.toLowerCase()}
+				fn={handleFilterChange}
+			/>
 			<h2>Add a new contact</h2>
-			<form onSubmit={addContact}>
-				<div>
-					name:
-					<input
-						value={newName}
-						onChange={handleNameChange}
-					/>
-				</div>
-				<div>
-					number:
-					<input
-						value={newNumber}
-						type="number"
-						onChange={handleNumberChange}
-					/>
-				</div>
-				<div>
-					<button type="submit">add</button>
-				</div>
-			</form>
+			<PersonForm 
+				onSub={addContact}
+				name={newName}
+				nameFn={handleNameChange}
+				num={newNumber}
+				numFn={handleNumberChange}
+			/>
 			<h2>Numbers</h2>
-			<div> {filtering()} </div>
+			<Contacts
+				personsContacts={persons}
+				newFilterContacts={newFilter}
+			/>
 		</div>
 	)
 }
