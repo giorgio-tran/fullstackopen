@@ -1,18 +1,29 @@
-import { useState } from 'react'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Contacts from './components/Contacts'
 
 const App = () => {
-	const [persons, setPersons] = useState([
-		{name: 'Arto Hellas', number: '8081234567'},
-		{name: 'dummy dum', number: '8083451234'},
-		{name: 'Sherlock Holmes', number: '8086917890'}
-	])
+	const [persons, setPersons] = useState([])
 	const [newName, setNewName] = useState('')
 	const [newNumber, setNewNumber] = useState('')
 	const [newFilter, setNewFilter] = useState('')
 
+	//connects to the database
+	const hook = () => {
+		console.log('effect')
+		axios
+		  .get('http://localhost:3001/persons')
+		  .then(response => {
+			console.log('promise fulfilled')
+			setPersons(response.data)
+		  })
+	  }
+	  
+	useEffect(hook, [])
+	  
 	//adds person's name 
 	const addContact = (event) => {
 		event.preventDefault()
