@@ -41,15 +41,33 @@ const App = () => {
 
 	//if the number of countries < 10, returns them 
 	const filtering = () => {
+		//if country is greater than 10 return string
 		if (filterByCountryName.length > 10) {
 			return (
 				"Too many matches, please specify another filter"
 			)
-		} else {
+		} 
+		if (filterByCountryName.length == 1) {
+			console.log('languages', filterByCountryName[0].languages)
 			return (
-				showFilteredCountries(filterByCountryName)
+				<div>
+					<h1>{filterByCountryName[0].name.common}</h1>
+					<div>capital: {filterByCountryName[0].capital}</div>
+					<div>area: {filterByCountryName[0].area}</div>
+					<h2>Languages</h2>
+					<ul>
+						{filterByCountryName[0].languages.map((key) => {
+							<li>{filterByCountryName[0].languages[key]}</li>
+						})}
+					</ul>
+				</div>
 			)
 		}
+		//returns the name of the countries by name 
+		return (
+			showFilteredCountries(filterByCountryName)
+		)
+		
 	}
 
 	return (
