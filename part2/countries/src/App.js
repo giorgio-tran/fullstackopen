@@ -28,14 +28,37 @@ const App = () => {
 			.toLowerCase()
 			.includes(newFilter.toLowerCase())
 	)
-	
-	const showFilteredCountries = (array) => {
+	//gets the country information
+	const getCountry = (country) => {
+		console.log("getCountry:", country)
 		return (
-			array.map((country) => 
-				<div key={country.name.common}>
-					{country.name.common}
-				</div>
-			)
+			<div>
+				<h1>{country.name.common}</h1>
+				<div>capital: {country.area}</div>
+				<div>area: {country.area}</div>
+				<h2>Languages</h2>
+				<ul>
+					{Object.keys(country.languages).map((key) => {
+						console.log("key", key)
+						return <li key={key}>{country.languages[key]}</li>
+					})}
+				</ul>
+				<img src = {country.flags.png} alt="flag" />
+			</div>
+		)
+	}
+
+	//filters countries 
+ 	const showFilteredCountries = (array) => {
+		console.log("filtered array", array)
+		return (
+			array.map((country) => {
+				return (
+					<div key={country.name.common}>
+						{country.name.common} <button> show </button>
+					</div>
+				)
+			})
 		)
 	}
 
@@ -56,10 +79,12 @@ const App = () => {
 					<div>area: {filterByCountryName[0].area}</div>
 					<h2>Languages</h2>
 					<ul>
-						{filterByCountryName[0].languages.map((key) => {
-							<li>{filterByCountryName[0].languages[key]}</li>
-						})}
+						{Object.keys(filterByCountryName[0].languages).map((key) => {
+              console.log("key", key);
+              return <li key={key}>{filterByCountryName[0].languages[key]}</li>;
+            })}
 					</ul>
+					<img src={filterByCountryName[0].flags.png} alt="flag" />
 				</div>
 			)
 		}
