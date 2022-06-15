@@ -1,6 +1,24 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+const Country = ({country}) => {
+	return (
+		<div>
+			<h1>{country.name.common}</h1>
+			<div>capital: {country.area}</div>
+			<div>area: {country.area}</div>
+			<h2>Languages</h2>
+			<ul>
+				{Object.keys(country.languages).map((key) => {
+					console.log("key", key)
+					return <li key={key}>{country.languages[key]}</li>
+				})}
+			</ul>
+			<img src = {country.flags.png} alt="flag" />
+		</div>
+	)
+}
+
 const App = () => {
 	const [countries, setCountries] = useState([])
 	const [newFilter, setNewFilter] = useState('text')
@@ -28,25 +46,6 @@ const App = () => {
 			.toLowerCase()
 			.includes(newFilter.toLowerCase())
 	)
-	//gets the country information
-	const getCountry = (country) => {
-		console.log("getCountry:", country)
-		return (
-			<div>
-				<h1>{country.name.common}</h1>
-				<div>capital: {country.area}</div>
-				<div>area: {country.area}</div>
-				<h2>Languages</h2>
-				<ul>
-					{Object.keys(country.languages).map((key) => {
-						console.log("key", key)
-						return <li key={key}>{country.languages[key]}</li>
-					})}
-				</ul>
-				<img src = {country.flags.png} alt="flag" />
-			</div>
-		)
-	}
 
 	//filters countries 
  	const showFilteredCountries = (array) => {
@@ -70,22 +69,10 @@ const App = () => {
 				"Too many matches, please specify another filter"
 			)
 		} 
-		if (filterByCountryName.length == 1) {
+		if (filterByCountryName.length === 1) {
 			console.log('languages', filterByCountryName[0].languages)
 			return (
-				<div>
-					<h1>{filterByCountryName[0].name.common}</h1>
-					<div>capital: {filterByCountryName[0].capital}</div>
-					<div>area: {filterByCountryName[0].area}</div>
-					<h2>Languages</h2>
-					<ul>
-						{Object.keys(filterByCountryName[0].languages).map((key) => {
-              console.log("key", key);
-              return <li key={key}>{filterByCountryName[0].languages[key]}</li>;
-            })}
-					</ul>
-					<img src={filterByCountryName[0].flags.png} alt="flag" />
-				</div>
+				<Country country={filterByCountryName[0]} />
 			)
 		}
 		//returns the name of the countries by name 
@@ -104,9 +91,7 @@ const App = () => {
 					onChange={handleFilterChange} 
 				/>
 			</div>
-			<div>
-				{filtering()}
-			</div>
+			<div>{filtering()}</div>
 		</div>
 	)
 }
