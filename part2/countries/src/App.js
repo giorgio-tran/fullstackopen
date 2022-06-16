@@ -1,27 +1,13 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const Country = ({country}) => {
-	return (
-		<div>
-			<h1>{country.name.common}</h1>
-			<div>capital: {country.area}</div>
-			<div>area: {country.area}</div>
-			<h2>Languages</h2>
-			<ul>
-				{Object.keys(country.languages).map((key) => {
-					console.log("key", key)
-					return <li key={key}>{country.languages[key]}</li>
-				})}
-			</ul>
-			<img src = {country.flags.png} alt="flag" />
-		</div>
-	)
-}
+import Country from './components/Country'
 
 const App = () => {
 	const [countries, setCountries] = useState([])
-	const [newFilter, setNewFilter] = useState('text')
+	const [newFilter, setNewFilter] = useState('')
+	const [clickedCountry, setClickedCountry] = useState(false)
+	const [idOfButton, setIdOfButton] = useState(0)
 
 	//connects to the countries api
 	useEffect(() => {
@@ -35,9 +21,19 @@ const App = () => {
 	}, [])
 	console.log('render', countries.length, 'countries')
 	
-	
+	//handles changes in input box
 	const handleFilterChange = (event) => {
+		//set the toggle to false 
+		setClickedCountry(false)
 		setNewFilter(event.target.value)
+	}
+	//handles 'show' button
+	const handleClickedCountry = (event) => {
+		event.preventDefault()
+		//set the toggle to true 
+		setClickedCountry(true)
+		setIdOfButton(event.target.id)
+		console.log('idOfButton', event.target.id)
 	}
 
 	/* Filter Component */
@@ -47,14 +43,16 @@ const App = () => {
 			.includes(newFilter.toLowerCase())
 	)
 
-	//filters countries 
+	//shows the filtered countries on the page
  	const showFilteredCountries = (array) => {
 		console.log("filtered array", array)
 		return (
 			array.map((country) => {
+				console.log('show filtered country:', array.indexOf(country), country.name.common)
 				return (
 					<div key={country.name.common}>
-						{country.name.common} <button> show </button>
+						{country.name.common} 
+						<button id={array.indexOf(country)} onClick={handleClickedCountry}> show </button>
 					</div>
 				)
 			})
@@ -76,6 +74,13 @@ const App = () => {
 			)
 		}
 		//returns the name of the countries by name 
+		if (clickedCountry === true) {
+			console.log(filterByCountryName[idOfButton])
+			return (
+				<Country country={filterByCountryName[idOfButton]} />
+			)
+		}
+
 		return (
 			showFilteredCountries(filterByCountryName)
 		)
