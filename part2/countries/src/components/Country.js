@@ -1,6 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Country = ({country}) => {
+	const [weather, setWeather] = useState([])
+	const api_key = process.env.REACT_APP_API_KEY
+	const lat = country.latlng[0]
+	const lon = country.latlng[1]
+
+	useEffect(() => {
+		console.log('weather effect')
+		axios
+			.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=alerts&appid=${api_key}`)
+			.then(response => {
+				console.log('weather promise fulfilled')
+				setWeather(response.data)
+			})
+	}, [])
+	console.log('render', weather.length)
+
 	return (
 		<div>
 			<h1>{country.name.common}</h1>
