@@ -11,7 +11,6 @@ const App = () => {
 
 	//connects to the countries api
 	useEffect(() => {
-		console.log('effect')
 		axios
 			.get('https://restcountries.com/v3.1/all')
 			.then(response => {
@@ -19,7 +18,6 @@ const App = () => {
 				setCountries(response.data)
 			})
 	}, [])
-	console.log('render', countries.length, 'countries')
 	
 	//handles changes in input box
 	const handleFilterChange = (event) => {
@@ -33,7 +31,6 @@ const App = () => {
 		//set the toggle to true 
 		setClickedCountry(true)
 		setIdOfButton(event.target.id)
-		console.log('idOfButton', event.target.id)
 	}
 
 	/* Filter Component */
@@ -45,10 +42,8 @@ const App = () => {
 
 	//shows the filtered countries on the page
  	const showFilteredCountries = (array) => {
-		console.log("filtered array", array)
 		return (
 			array.map((country) => {
-				console.log('show filtered country:', array.indexOf(country), country.name.common)
 				return (
 					<div key={country.name.common}>
 						{country.name.common} 
@@ -68,7 +63,6 @@ const App = () => {
 			)
 		} 
 		if (filterByCountryName.length === 1) {
-			console.log('languages', filterByCountryName[0].languages)
 			return (
 				<Country country={filterByCountryName[0]} />
 			)
