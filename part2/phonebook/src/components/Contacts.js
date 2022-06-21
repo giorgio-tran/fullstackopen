@@ -1,30 +1,32 @@
 import React from 'react'
+import contactsServices from '../services/contacts'
 
-const Contacts = ({ personsContacts, newFilterContacts }) => {
+const Contacts = ({ personsContacts, newFilterContacts}) => {
+	//show the name based on input of filter 
     const filterByName = personsContacts.filter((person) =>
 		person.name
 			.toLowerCase()
 			.includes(newFilterContacts)
 	)
 
-    const filtering = () => {
-		if (newFilterContacts === null) {
-			return (
-				mapArray(personsContacts)
+	const removeContact = (event) => {
+		event.preventDefault()
+		contactsServices
+			.remove(event.target.id)
+			.then(
+				console.log('removed', event.target.id)
 			)
-		} else {
-			return (
-				mapArray(filterByName)
-			)
-		}
 	}
 
-    //const map array
+    //maps each persons name
 	const mapArray = (array) => {
 		return (
 			array.map((person) =>
-				<div key={person.name}>
-					{person.name} {person.number}
+				<div key={person.id}>
+					{person.name} {person.number} 
+					<button id={person.id} onClick={removeContact}>
+						delete 
+					</button>
 				</div>
 			)
 		)
@@ -32,7 +34,9 @@ const Contacts = ({ personsContacts, newFilterContacts }) => {
 
     return (
     <div>
-        {filtering()}
+        {newFilterContacts === null
+			? mapArray(personsContacts)
+			: mapArray(filterByName)} 
     </div>
     )
 }
