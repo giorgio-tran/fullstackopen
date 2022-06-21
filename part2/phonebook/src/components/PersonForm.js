@@ -8,6 +8,7 @@ const PersonForm = ({onSub, name, nameFn, num, numFn}) => {
                 name:
                 <input 
                     value={name}
+                    type="text"
                     onChange={nameFn}
                 />
             </div>

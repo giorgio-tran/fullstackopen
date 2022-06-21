@@ -11,19 +11,7 @@ const App = () => {
 	const [newNumber, setNewNumber] = useState('')
 	const [newFilter, setNewFilter] = useState('')
 
-	//connects to the database
-	// const hook = () => {
-	// 	console.log('effect')
-	// 	axios
-	// 	  .get('http://localhost:3001/persons')
-	// 	  .then(response => {
-	// 		console.log('promise fulfilled')
-	// 		setPersons(response.data)
-	// 	  })
-	//   }
-	  
-	// useEffect(hook, [])
-
+	//establish connection with database 
 	useEffect(() => {
 		axios
 			.get('http://localhost:3001/persons')
@@ -47,10 +35,7 @@ const App = () => {
 		if (duplicate.length > 0) {
 			alert(`${newName} is already added to phonebook`)
 		} else {
-			//adds contact to the list
-			// setPersons(persons.concat(contactObj))
-			// setNewName('')
-			// setNewNumber('')
+			//adds person to the list
 			axios
 				.post('http://localhost:3001/persons', contactObj)
 				.then(response => {
