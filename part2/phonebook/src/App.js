@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import axios from 'axios'
+import contactsService from './services/contacts'
 
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
@@ -13,16 +13,13 @@ const App = () => {
 
 	//establish connection with database 
 	useEffect(() => {
-		axios
-			.get('http://localhost:3001/persons')
-			.then(response => {
-				console.log('promise fulfilled')
-				setPersons(response.data)
+		contactsService
+			.getAll()
+			.then(initialPersons => {
+				setPersons(initialPersons)
 			})
 	}, [])
 
-	
-	  
 	//adds person's name 
 	const addContact = (event) => {
 		event.preventDefault()
@@ -36,13 +33,12 @@ const App = () => {
 			alert(`${newName} is already added to phonebook`)
 		} else {
 			//adds person to the list
-			axios
-				.post('http://localhost:3001/persons', contactObj)
-				.then(response => {
-					setPersons(persons.concat(response.data))
+			contactsService
+				.create(contactObj)
+				.then(returnedPerson => {
+					setPersons(persons.concat(returnedPerson))
 					setNewName('')
 					setNewNumber('')
-					console.log(response.data)
 				})
 		}
 		console.log('persons', persons)
