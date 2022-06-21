@@ -12,17 +12,28 @@ const App = () => {
 	const [newFilter, setNewFilter] = useState('')
 
 	//connects to the database
-	const hook = () => {
-		console.log('effect')
-		axios
-		  .get('http://localhost:3001/persons')
-		  .then(response => {
-			console.log('promise fulfilled')
-			setPersons(response.data)
-		  })
-	  }
+	// const hook = () => {
+	// 	console.log('effect')
+	// 	axios
+	// 	  .get('http://localhost:3001/persons')
+	// 	  .then(response => {
+	// 		console.log('promise fulfilled')
+	// 		setPersons(response.data)
+	// 	  })
+	//   }
 	  
-	useEffect(hook, [])
+	// useEffect(hook, [])
+
+	useEffect(() => {
+		axios
+			.get('http://localhost:3001/persons')
+			.then(response => {
+				console.log('promise fulfilled')
+				setPersons(response.data)
+			})
+	}, [])
+
+	
 	  
 	//adds person's name 
 	const addContact = (event) => {
@@ -37,9 +48,17 @@ const App = () => {
 			alert(`${newName} is already added to phonebook`)
 		} else {
 			//adds contact to the list
-			setPersons(persons.concat(contactObj))
-			setNewName('')
-			setNewNumber('')
+			// setPersons(persons.concat(contactObj))
+			// setNewName('')
+			// setNewNumber('')
+			axios
+				.post('http://localhost:3001/persons', contactObj)
+				.then(response => {
+					setPersons(persons.concat(response.data))
+					setNewName('')
+					setNewNumber('')
+					console.log(response.data)
+				})
 		}
 		console.log('persons', persons)
 	}
