@@ -13,6 +13,7 @@ const App = () => {
 
 	//establish connection with database 
 	useEffect(() => {
+		console.log('rendered')
 		contactsService
 			.getAll()
 			.then(initialPersons => {
@@ -59,6 +60,20 @@ const App = () => {
 		setNewNumber(event.target.value)
 	}
 
+	const handleRemoveContact = (event) => {
+		event.preventDefault()
+		if (window.confirm('Delete person?')) {
+			contactsService
+				.remove(event.target.id)
+				.then(
+					setPersons(persons.filter(person => 
+						person.id !== parseInt(event.target.id)
+					))
+				)
+		}
+	}
+	//console.log(persons)
+
 	return (
 		<div>
 			<h2>Phonebook</h2>
@@ -78,6 +93,7 @@ const App = () => {
 			<Contacts
 				personsContacts={persons}
 				newFilterContacts={newFilter}
+				buttonHandler={handleRemoveContact}
 			/>
 		</div>
 	)
