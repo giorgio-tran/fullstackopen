@@ -62,7 +62,9 @@ const App = () => {
 
 	const handleRemoveContact = (event) => {
 		event.preventDefault()
-		if (window.confirm('Delete person?')) {
+		const getPerson = persons.filter(person => person.id === parseInt(event.target.id))
+		console.log(event.target.key)
+		if (window.confirm(`Delete ${getPerson[0].name}?`)) {
 			contactsService
 				.remove(event.target.id)
 				.then(
