@@ -31,7 +31,17 @@ const App = () => {
 		)
 		//checks for duplicate in the list
 		if (duplicate.length > 0) {
-			alert(`${newName} is already added to phonebook`)
+			if (window.confirm(`${newName} is already added to phonebook. Replace the old number with the new one?`)) {
+				contactsService
+					.update(duplicate[0].id, contactObj)
+					.then(returnedPerson => {
+						setPersons(persons.map(person => 
+							person.name !== newName
+								? person
+								: returnedPerson
+						))
+					})
+			}
 		} else {
 			//adds person to the list
 			contactsService

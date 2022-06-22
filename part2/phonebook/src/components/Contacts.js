@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 
-import contactsService from '../services/contacts'
-
 const Contacts = ({ personsContacts, newFilterContacts, buttonHandler }) => {
 	
 	//show the name based on input of filter 
