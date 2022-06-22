@@ -1,7 +1,9 @@
-import React from 'react'
-import contactsServices from '../services/contacts'
+import React, {useState, useEffect} from 'react'
 
-const Contacts = ({ personsContacts, newFilterContacts}) => {
+import contactsService from '../services/contacts'
+
+const Contacts = ({ personsContacts, newFilterContacts, buttonHandler }) => {
+	
 	//show the name based on input of filter 
     const filterByName = personsContacts.filter((person) =>
 		person.name
@@ -9,22 +11,13 @@ const Contacts = ({ personsContacts, newFilterContacts}) => {
 			.includes(newFilterContacts)
 	)
 
-	const removeContact = (event) => {
-		event.preventDefault()
-		contactsServices
-			.remove(event.target.id)
-			.then(
-				console.log('removed', event.target.id)
-			)
-	}
-
     //maps each persons name
 	const mapArray = (array) => {
 		return (
 			array.map((person) =>
 				<div key={person.id}>
 					{person.name} {person.number} 
-					<button id={person.id} onClick={removeContact}>
+					<button id={person.id} onClick={buttonHandler}>
 						delete 
 					</button>
 				</div>
