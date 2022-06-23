@@ -4,12 +4,16 @@ import contactsService from './services/contacts'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Contacts from './components/Contacts'
+import Notification from './components/Notification'
+import './index.css'
 
 const App = () => {
 	const [persons, setPersons] = useState([])
 	const [newName, setNewName] = useState('')
 	const [newNumber, setNewNumber] = useState('')
 	const [newFilter, setNewFilter] = useState('')
+	const [message, setMessage] = useState(null)
+	
 
 	//establish connection with database 
 	useEffect(() => {
@@ -51,6 +55,11 @@ const App = () => {
 					setNewName('')
 					setNewNumber('')
 				})
+			//notifies that the person has been added
+			setMessage(`Added ${contactObj.name}`)
+			setTimeout(() => {
+				setMessage(null)
+			}, 5000)
 		}
 		console.log('persons', persons)
 	}
@@ -73,7 +82,9 @@ const App = () => {
 	const handleRemoveContact = (event) => {
 		event.preventDefault()
 		const getPerson = persons.filter(person => person.id === parseInt(event.target.id))
+
 		console.log(event.target.key)
+
 		if (window.confirm(`Delete ${getPerson[0].name}?`)) {
 			contactsService
 				.remove(event.target.id)
@@ -84,11 +95,11 @@ const App = () => {
 				)
 		}
 	}
-	//console.log(persons)
 
 	return (
 		<div>
 			<h2>Phonebook</h2>
+			<Notification message={message}/>
 			<Filter 
 				filter={newFilter.toLowerCase()}
 				fn={handleFilterChange}
