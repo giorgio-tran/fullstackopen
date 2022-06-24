@@ -1,39 +1,24 @@
 {
   "persons": [
     {
-      "name": "Franklin",
-      "number": "123",
-      "id": 3
-    },
-    {
-      "name": "Franlin",
-      "number": "12345",
-      "id": 4
-    },
-    {
-      "name": "James",
-      "number": "125215",
-      "id": 5
-    },
-    {
-      "name": "Colt",
-      "number": "1456677",
-      "id": 6
-    },
-    {
-      "name": "Chen",
-      "number": "1345366",
-      "id": 7
-    },
-    {
-      "name": "Jeff",
-      "number": "12341234",
-      "id": 8
-    },
-    {
       "name": "John ",
       "number": "1234",
       "id": 9
+    },
+    {
+      "name": "Mik",
+      "number": "12345",
+      "id": 10
+    },
+    {
+      "name": "Madsf",
+      "number": "1234",
+      "id": 11
+    },
+    {
+      "name": "John",
+      "number": "12341235",
+      "id": 12
     }
   ]
 }

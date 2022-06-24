@@ -13,6 +13,7 @@ const App = () => {
 	const [newNumber, setNewNumber] = useState('')
 	const [newFilter, setNewFilter] = useState('')
 	const [message, setMessage] = useState(null)
+	const [style, setStyle] = useState(null)
 	
 
 	//establish connection with database 
@@ -57,6 +58,7 @@ const App = () => {
 				})
 			//notifies that the person has been added
 			setMessage(`Added ${contactObj.name}`)
+			setStyle('added')
 			setTimeout(() => {
 				setMessage(null)
 			}, 5000)
@@ -83,11 +85,16 @@ const App = () => {
 		event.preventDefault()
 		const getPerson = persons.filter(person => person.id === parseInt(event.target.id))
 
-		console.log(event.target.key)
-
 		if (window.confirm(`Delete ${getPerson[0].name}?`)) {
 			contactsService
 				.remove(event.target.id)
+				.catch(error => {
+					setStyle('error')
+					setMessage(`Information of ${getPerson[0].name} was already deleted`)
+					setTimeout(() => {
+						setMessage(null)
+					}, 3000)
+				})
 				.then(
 					setPersons(persons.filter(person => 
 						person.id !== parseInt(event.target.id)
@@ -99,7 +106,7 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phonebook</h2>
-			<Notification message={message}/>
+			<Notification message={message} alertStyle={style}/>
 			<Filter 
 				filter={newFilter.toLowerCase()}
 				fn={handleFilterChange}
