@@ -1,4 +1,4 @@
-const express = require(express)
+const express = require('express')
 const app = express()
 
 let persons = [
@@ -26,4 +26,11 @@ let persons = [
 
 app.use(express.json())
 
-app.get()
+app.get('/api/persons', (request, response) => {
+    response.json(persons)
+})
+
+const PORT = 3001
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+})
