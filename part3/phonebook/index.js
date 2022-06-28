@@ -65,6 +65,32 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(204).end()
 })
 
+//generates a random number less than 100k
+const generateId = () => {
+  return (
+    Math.floor(Math.random() * 100000)
+)}
+
+
+app.post('/api/persons', (request, response) => {
+  const body = request.body
+
+  if (!body.name || !body.number) {
+    return response.status(400).json({
+      error: 'content is missing'
+    })
+  } 
+
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number
+  }
+
+  persons = persons.concat(person)
+
+  response.json(person)
+})
 //ensures that the server is running
 const PORT = 3001
 app.listen(PORT, () => {
