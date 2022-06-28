@@ -77,9 +77,20 @@ app.post('/api/persons', (request, response) => {
 
   if (!body.name || !body.number) {
     return response.status(400).json({
-      error: 'content is missing'
+      error: 'name or number are missing'
     })
   } 
+
+  //filters duplicate
+  const duplicate = persons.filter(person => 
+    body.name.toLowerCase() === person.name.toLowerCase()
+  )
+
+  if (duplicate) {
+    return response.status(400).json({
+      error: 'name must be unique'
+    })
+  }
 
   const person = {
     id: generateId(),
@@ -91,6 +102,7 @@ app.post('/api/persons', (request, response) => {
 
   response.json(person)
 })
+
 //ensures that the server is running
 const PORT = 3001
 app.listen(PORT, () => {
