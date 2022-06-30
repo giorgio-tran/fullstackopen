@@ -4,7 +4,7 @@ const cors = require('cors')
 
 const app = express()
 
-//morgan token
+//morgan token that returns body of req
 morgan.token('objectInfo', (req, res) => {
   return (
     JSON.stringify(req.body)
@@ -99,7 +99,7 @@ app.post('/api/persons', (request, response) => {
   const duplicate = persons.filter(person => 
     body.name.toLowerCase() === person.name.toLowerCase()
   )
-  
+
   if (duplicate) {
     return response.status(400).json({
       error: 'name must be unique'
@@ -118,7 +118,7 @@ app.post('/api/persons', (request, response) => {
 })
 
 //ensures that the server is running
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
