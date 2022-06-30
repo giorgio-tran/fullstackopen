@@ -1,8 +1,10 @@
 const express = require('express')
-const morgan = require ('morgan')
+const morgan = require('morgan')
+const cors = require('cors')
 
 const app = express()
 
+//morgan token
 morgan.token('objectInfo', (req, res) => {
   return (
     JSON.stringify(req.body)
@@ -34,9 +36,11 @@ let persons = [
 ]
 
 app.use(express.json())
+app.use(cors())
 app.use(morgan(
   ':method :url :status :res[content-length] - :response-time ms :objectInfo'
 ))
+
 //get request to the server
 app.get('/api/persons', (request, response) => {
     response.json(persons)
@@ -95,6 +99,7 @@ app.post('/api/persons', (request, response) => {
   const duplicate = persons.filter(person => 
     body.name.toLowerCase() === person.name.toLowerCase()
   )
+  
   if (duplicate) {
     return response.status(400).json({
       error: 'name must be unique'
