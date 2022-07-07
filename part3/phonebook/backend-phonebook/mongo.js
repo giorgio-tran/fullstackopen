@@ -18,21 +18,39 @@ const personNumber = process.argv[4]
 
 const Person = mongoose.model('Person', personSchema)
 
-mongoose
-    .connect(url)
-    .then((result) => {
-        console.log('connected')
-        const person = new Person({
-            name: personName,
-            number: personNumber,
+//if the length is greater than 3, add the person to the list
+if (process.argv.length > 3) {
+    mongoose
+        .connect(url)
+        .then((result) => {
+            console.log('connected')
+            const person = new Person({
+                name: personName,
+                number: personNumber,
+            })
+            console.log(
+                `added ${personName} number ${personNumber} to phonebook`
+            )
+            
+            return person.save()
         })
-        console.log(
-            `added ${personName} number ${personNumber}`
-        )
-        
-        return person.save()
-    })
-    .then(() => {
-        return mongoose.connection.close()
-    })
-    .catch((err) => console.log(err))
+        .then(() => {
+            return mongoose.connection.close()
+        })
+        .catch((err) => console.log(err))
+} else if (process.argv.length === 3) {
+    //if the length is equal to three, show the people in the database
+    mongoose.connect(url)
+    
+    Person
+        .find({})
+        .then(result => {
+            result.forEach(person => {
+                console.log(person)
+            })
+            mongoose.connection.close()
+        })
+
+} else {
+    console.log("ERROR! INVALID INPUTS")
+}
