@@ -4,6 +4,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const Person = require('./models/person')
+const person = require('./models/person')
 const app = express()
 
 //morgan token that returns body of req
@@ -46,7 +47,7 @@ app.use(morgan(
 
 //get request to the server
 app.get('/api/persons', (request, response) => {
-    Person.find({}).then(notes => {
+    Person.find({}).then(persons => {
       response.json(persons)
     })
 })
@@ -67,14 +68,9 @@ app.get('/info', (request, response) => {
 
 //get an individual person, if person is found 
 app.get('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const person = persons.find(person => person.id === id)
-
-  if (person) {
+  Person.findById(request.params.id).then(person => {
     response.json(person)
-  } else {
-    response.status(404).end()
-  }
+  })
 })
 
 //deletes person by filtering out the person who possesses the particular ID
@@ -100,26 +96,14 @@ app.post('/api/persons', (request, response) => {
     })
   } 
 
-  //filters duplicate
-  const duplicate = persons.filter(person => 
-    body.name.toLowerCase() === person.name.toLowerCase()
-  )
-
-  if (duplicate) {
-    return response.status(400).json({
-      error: 'name must be unique'
-    })
-  }
-
-  const person = {
-    id: generateId(),
+  const person = new Person({
     name: body.name,
-    number: body.number
-  }
+    number: body.number,
+  })
 
-  persons = persons.concat(person)
-
-  response.json(person)
+  person.save().then(savedPerson => {
+    response.json(savedPerson)
+  })
 })
 
 //ensures that the server is running
