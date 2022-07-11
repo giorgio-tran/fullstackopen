@@ -1,7 +1,9 @@
+require('dotenv').config() 
+const mongoose = require('mongoose')
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-
+const Person = require('./models/person')
 const app = express()
 
 //morgan token that returns body of req
@@ -44,7 +46,9 @@ app.use(morgan(
 
 //get request to the server
 app.get('/api/persons', (request, response) => {
-    response.json(persons)
+    Person.find({}).then(notes => {
+      response.json(persons)
+    })
 })
 
 //convert into a string, the browser will interpret it as html
