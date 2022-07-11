@@ -14,7 +14,7 @@ mongoose.connect(url)
 
 const personSchema = new mongoose.Schema({
     name: String,
-    date: Date,
+    number: Number,
 })
 
 //mongoose's _id is an object, so need to convert everything to string just to be safe
