@@ -1,3 +1,3 @@
 # LINK TO APP VIA HEROKU
 
-https://glacial-plains-99423.herokuapp.com/api/persons
+https://phonebook-fso2022-gt.herokuapp.com/
