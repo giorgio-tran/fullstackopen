@@ -81,12 +81,6 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(204).end()
 })
 
-//generates a random number less than 100k
-const generateId = () => {
-  return (
-    Math.floor(Math.random() * 100000)
-)}
-
 app.post('/api/persons', (request, response) => {
   const body = request.body
 
@@ -105,6 +99,25 @@ app.post('/api/persons', (request, response) => {
     response.json(savedPerson)
   })
 })
+
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: 'unknown endpoint' })
+}
+
+app.use(unknownEndpoint)
+
+//error handling middleware
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message)
+  //cast error is mongodb specific, can't create objectid
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformatted id'})
+  }
+
+  next(error)
+}
+
+app.use(errorHandler)
 
 //ensures that the server is running
 const PORT = process.env.PORT || 3001
