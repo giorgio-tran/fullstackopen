@@ -28,17 +28,20 @@ app.get('/api/persons', (request, response) => {
     })
 })
 
-//convert into a string, the browser will interpret it as html
-app.get('/info', (request, response) => {
+//get request
+app.get('/info', async (request, response) => {
+    //uses and asynchronous function to get the total number of documents
+    let totalPeople = await Person.estimatedDocumentCount()
+
     response.send(
-        `<div> 
-          <p>
-            Phonebook has info for ${persons.length} people
-          </p>
-          <p>
-            ${new Date()}
-          </p>
-        </div>`
+      `<div> 
+        <p>
+          Phonebook has info for ${totalPeople} people
+        </p>
+        <p>
+          ${new Date()}
+        </p>
+      </div>`
   )
 })
 
