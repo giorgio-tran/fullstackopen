@@ -67,18 +67,22 @@ app.get('/info', (request, response) => {
 })
 
 //get an individual person, if person is found 
-app.get('/api/persons/:id', (request, response) => {
-  Person.findById(request.params.id).then(person => {
-    response.json(person)
-  })
+app.get('/api/persons/:id', (request, response, next) => {
+  Person.findById(request.params.id)
+    .then(person => {
+      response.json(person)
+    })
+    //next with params moves to error handler middleware
+    .catch(error => next(error))
 })
 
-//deletes person by filtering out the person who possesses the particular ID
+//deletes person in MongoDB
 app.delete('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  persons = persons.filter(person => person.id !== id)
-
-  response.status(204).end()
+  Node.findByIdAndRemove(request.params.id)
+    .then(result => {
+      response.status(204).end()
+    })
+    .catch(error => next(error))
 })
 
 app.post('/api/persons', (request, response) => {
