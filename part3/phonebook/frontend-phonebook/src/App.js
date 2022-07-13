@@ -98,7 +98,7 @@ const App = () => {
 				})
 				.then(
 					setPersons(persons.filter(person => 
-						person.id !== parseInt(event.target.id)
+						person.id !== event.target.id
 					))
 				)
 		}
