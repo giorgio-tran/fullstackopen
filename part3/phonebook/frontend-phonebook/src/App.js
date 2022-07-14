@@ -15,7 +15,6 @@ const App = () => {
 	const [message, setMessage] = useState(null)
 	const [style, setStyle] = useState(null)
 	
-
 	//establish connection with database 
 	useEffect(() => {
 		console.log('rendered')
