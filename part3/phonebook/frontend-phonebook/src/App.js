@@ -55,13 +55,21 @@ const App = () => {
 					setPersons(persons.concat(returnedPerson))
 					setNewName('')
 					setNewNumber('')
+					setMessage(`Added ${contactObj.name}`)
+					setStyle('added')
+					setTimeout(() => {
+					setMessage(null)
+					}, 5000)
 				})
-			//notifies that the person has been added
-			setMessage(`Added ${contactObj.name}`)
-			setStyle('added')
-			setTimeout(() => {
-				setMessage(null)
-			}, 5000)
+				//catches the error and sends notif on screen
+				.catch(error => 
+					setMessage(error.response.data.error),
+					setStyle('error'),
+					setTimeout(() => {
+						setMessage(null)
+					}, 5000)
+				)
+
 		}
 		console.log('persons', persons)
 	}
