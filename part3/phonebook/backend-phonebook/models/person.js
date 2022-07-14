@@ -12,13 +12,22 @@ mongoose.connect(url)
         console.log('error connecting to MongoDB', error.message)
     })
 
+
 const personSchema = new mongoose.Schema({
     name: {
         type: String,
         minLength: 3,
         required: true
     },
-    number: Number,
+    number: {
+        type: Number,
+        validate: {
+            validator: function(v) {
+                return v.length >= 8
+            },
+        },
+        required: true
+    }
 })
 
 //mongoose's _id is an object, so need to convert everything to string just to be safe
