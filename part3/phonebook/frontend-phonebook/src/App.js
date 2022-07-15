@@ -45,6 +45,12 @@ const App = () => {
 								: returnedPerson
 						))
 					})
+					.catch(error => 
+						setMessage(error.response.data.error),
+						setStyle('error'),
+						setTimeout(() => {
+							setMessage(null)
+						}, 5000))
 			}
 		} else {
 			//adds person to the list
