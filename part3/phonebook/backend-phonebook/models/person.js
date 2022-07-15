@@ -13,6 +13,16 @@ mongoose.connect(url)
     })
 
 
+const val = [
+    {validator: function(v) {
+        return v.length >= 8
+    }, message: 'Length of phone number is less than 8 characters.'},
+    {validator: function(v) {
+        //if - is present, it needs to be at index 2 or index 3
+        return !((v.indexOf('-') < 2 && v.indexOf('-') !== -1) || v.indexOf('-') > 3)
+    }, message: 'Inadequate placement of `-` in phone number'}
+]
+
 const personSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -20,12 +30,8 @@ const personSchema = new mongoose.Schema({
         required: true
     },
     number: {
-        type: Number,
-        validate: {
-            validator: function(v) {
-                return v.length >= 8
-            },
-        },
+        type: String,
+        validate: val,
         required: true
     }
 })

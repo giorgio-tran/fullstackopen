@@ -16,7 +16,7 @@ const PersonForm = ({onSub, name, nameFn, num, numFn}) => {
                 number:
                 <input
                     value={num}
-                    type="number"
+                    type="text"
                     onChange={numFn}
                 />
             </div>

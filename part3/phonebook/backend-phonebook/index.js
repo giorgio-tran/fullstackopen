@@ -57,14 +57,13 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 //updates person in MongoDB
 app.put('/api/persons/:id', (request, response, next) => {
-  const body = request.body
+  const { name, number } = request.body
 
-  const person = {
-    name: body.name,
-    number: body.number,
-  }
-
-  Person.findByIdAndUpdate(request.params.id, person, {new: true})
+  Person.findByIdAndUpdate(
+    request.params.id, 
+    { name, number }, 
+    {new: true, runValidators: true, context: 'query'}
+  )
     .then(updatedPerson => {
       response.json(updatedPerson)
     })
