@@ -4,16 +4,16 @@ const PersonForm = ({onSub, name, nameFn, num, numFn}) => {
 
     return (
         <form onSubmit={onSub}>
-            <div>
-                name:
+            <div className='text-and-box'>
+                <div>name:</div>
                 <input 
                     value={name}
                     type="text"
                     onChange={nameFn}
                 />
             </div>
-            <div>
-                number:
+            <div className='text-and-box'>
+                <div>number:</div>
                 <input
                     value={num}
                     type="text"

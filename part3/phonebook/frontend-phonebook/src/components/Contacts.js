@@ -1,5 +1,3 @@
-import React, {useState, useEffect} from 'react'
-
 const Contacts = ({ personsContacts, newFilterContacts, buttonHandler }) => {
 	
 	//show the name based on input of filter 
@@ -13,8 +11,8 @@ const Contacts = ({ personsContacts, newFilterContacts, buttonHandler }) => {
 	const mapArray = (array) => {
 		return (
 			array.map((person) =>
-				<div key={person.id}>
-					{person.name} {person.number} 
+				<div key={person.id} className='text-and-box'>
+					<div> {person.name} {person.number} </div>
 					<button id={person.id} onClick={buttonHandler}>
 						delete 
 					</button>

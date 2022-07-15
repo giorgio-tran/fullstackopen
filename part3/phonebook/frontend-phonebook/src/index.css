@@ -35,6 +35,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
 }
+/* end App.js */
 
 /* Notification */
 .added, .error {
@@ -56,4 +57,10 @@ body {
 .error {
   background: rgb(190, 85, 96);
 }
+/* End notification */
 
+.text-and-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
