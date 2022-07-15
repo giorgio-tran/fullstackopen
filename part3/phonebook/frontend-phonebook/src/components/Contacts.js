@@ -22,7 +22,7 @@ const Contacts = ({ personsContacts, newFilterContacts, buttonHandler }) => {
 	}
 
     return (
-    <div>
+    <div className='Contacts'>
         {newFilterContacts === null
 			? mapArray(personsContacts)
 			: mapArray(filterByName)} 

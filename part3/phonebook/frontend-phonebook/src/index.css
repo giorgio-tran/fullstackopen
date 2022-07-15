@@ -15,7 +15,7 @@ body {
 
 /*Container */
 .container {
-  height: 40%;
+  height: 50%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -62,5 +62,10 @@ body {
 .text-and-box {
   width: 100%;
   display: flex;
+  padding-bottom: 2%;
   justify-content: space-between;
+}
+
+.Contacts {
+  overflow-y: auto;
 }
