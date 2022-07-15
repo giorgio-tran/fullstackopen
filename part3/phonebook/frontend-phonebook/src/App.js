@@ -122,7 +122,6 @@ const App = () => {
 			<div className='container'>
 				<div className='left'>
 					<h2>Phonebook</h2>
-					<Notification message={message} alertStyle={style}/>
 					<Filter 
 						filter={newFilter.toLowerCase()}
 						fn={handleFilterChange}
@@ -136,6 +135,7 @@ const App = () => {
 						numFn={handleNumberChange}
 					/>
 				</div>
+				<Notification message={message} alertStyle={style}/>
 				<div className='right'>
 					<h2>Numbers</h2>
 					<Contacts
