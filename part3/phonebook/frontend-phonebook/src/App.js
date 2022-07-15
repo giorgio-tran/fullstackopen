@@ -118,27 +118,31 @@ const App = () => {
 	}
 
 	return (
-		<div>
-			<h2>Phonebook</h2>
-			<Notification message={message} alertStyle={style}/>
-			<Filter 
-				filter={newFilter.toLowerCase()}
-				fn={handleFilterChange}
-			/>
-			<h2>Add a new contact</h2>
-			<PersonForm 
-				onSub={addContact}
-				name={newName}
-				nameFn={handleNameChange}
-				num={newNumber}
-				numFn={handleNumberChange}
-			/>
-			<h2>Numbers</h2>
-			<Contacts
-				personsContacts={persons}
-				newFilterContacts={newFilter}
-				buttonHandler={handleRemoveContact}
-			/>
+		<div className='parent-container'>
+			<div>
+				<h2>Phonebook</h2>
+				<Notification message={message} alertStyle={style}/>
+				<Filter 
+					filter={newFilter.toLowerCase()}
+					fn={handleFilterChange}
+				/>
+				<h2>Add a new contact</h2>
+				<PersonForm 
+					onSub={addContact}
+					name={newName}
+					nameFn={handleNameChange}
+					num={newNumber}
+					numFn={handleNumberChange}
+				/>
+			</div>
+			<div>
+				<h2>Numbers</h2>
+				<Contacts
+					personsContacts={persons}
+					newFilterContacts={newFilter}
+					buttonHandler={handleRemoveContact}
+				/>
+			</div>
 		</div>
 	)
 }
