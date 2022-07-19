@@ -119,6 +119,7 @@ const App = () => {
 
 	return (
 		<div className='parent-container'>
+			<div className='top-filler'></div>
 			<div className='container'>
 				<div className='left'>
 					<h2>Phonebook</h2>
@@ -145,6 +146,7 @@ const App = () => {
 					/>
 				</div>
 			</div>
+			<div className='bottom-filler'></div>
 		</div>
 	)
 }

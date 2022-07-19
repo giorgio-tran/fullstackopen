@@ -1,40 +1,41 @@
 body {
-  font-family: Montserrat;
-  background-color: rgb(120, 122, 125);
+  font-family: Montserrat, Helvetica, sans-serif;
+  background-color: rgb(169, 169, 169);
 }
+
 
 /* App.js */
 /* Parent container */
 .parent-container {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
 /*Container */
 .container {
-  height: 50%;
+  box-sizing: border-box;
+  border: 1px solid;
+  height: 60%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
-  gap: 15vh;
+  gap: 8%;
+  padding: 2%;
 }
 
-/* Left child containers */
-.left {
-  height: 100%;
-}
-
-/* Right child container */
-.right {
+/* Left and right child containers */
+.left, .right {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 2%;
 }
+
 /* end App.js */
 
 /* Notification */
