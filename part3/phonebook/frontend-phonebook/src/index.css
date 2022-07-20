@@ -70,6 +70,7 @@ body {
   width: 100%;
   display: flex;
   padding-bottom: 2%;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -91,6 +92,14 @@ body {
   height: 250px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.person-name {
+  font-size: larger;
+}
+
+.person-number {
+  font-size: smaller;
 }
 
 .delete-and-gap {
