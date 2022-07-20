@@ -1,6 +1,8 @@
+
 body {
   font-family: Montserrat, Helvetica, sans-serif;
-  background-color: #D3D3D3;
+  background-image: linear-gradient(to top left, #6907F2, #DCE6F2);
+  color: #DCE6F2;
   padding: 0;
   margin: 0;
 }
@@ -17,11 +19,10 @@ body {
 }
 /*Container */
 .container {
-  background-color: rgb(142, 193, 174);
+  background-color: #2C0AA6;
   box-sizing: border-box;
-  border: 1px solid;
   border-radius: 15px;
-  box-shadow: 5px 10px 20px;
+  box-shadow: 5px 10px 40px black;
   width: 70%;
   max-width: 800px;
   display: flex;
@@ -33,6 +34,7 @@ body {
 
 /* Left and right child containers */
 .left, .right {
+  min-width: 270px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -72,14 +74,37 @@ body {
 }
 
 /* List of contacts */
+.Contacts::-webkit-scrollbar {
+  width: 6px;
+}
+
+.Contacts::-webkit-scrollbar-thumb {
+  background: #DCE6F2;
+  border-radius: 6px;
+}
+
+.Contacts::-webkit-scrollbar-track {
+  background:#1E0D8C;
+}
+
 .Contacts {
   height: 250px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.delete-and-gap {
+  display: flex;
 }
 
 .delete {
-  background-color:rgb(214, 146, 162);
+  background-color:#9904D9;
+  font-size: 0.6rem;
   color: white;
   border: none;
   border-radius: 4px;
+}
+
+.delete-gap {
+  width: 4px;
 }
