@@ -13,8 +13,8 @@ const Contacts = ({ personsContacts, newFilterContacts, buttonHandler }) => {
 			array.map((person) =>
 				<div key={person.id} className='text-and-box'>
 					<div> {person.name} {person.number} </div>
-					<button id={person.id} onClick={buttonHandler}>
-						delete 
+					<button class='delete' id={person.id} onClick={buttonHandler}>
+						X 
 					</button>
 				</div>
 			)
