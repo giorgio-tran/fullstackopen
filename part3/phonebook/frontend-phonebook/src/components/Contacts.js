@@ -12,10 +12,14 @@ const Contacts = ({ personsContacts, newFilterContacts, buttonHandler }) => {
 		return (
 			array.map((person) =>
 				<div key={person.id} className='text-and-box'>
-					<div> {person.name} {person.number} </div>
+					<div>
+						<div> {person.name} </div>
+						<div> {person.number} </div>
+					</div>
 					<div className='delete-and-gap'>
 						<button class='delete' id={person.id} onClick={buttonHandler}>
-							X 
+							{/* html entity for multiplication symbol */}
+							&#215; 
 						</button>
 						<div className='delete-gap'></div>
 					</div>
