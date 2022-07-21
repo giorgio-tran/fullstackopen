@@ -19,7 +19,7 @@ const Contacts = ({ personsContacts, newFilterContacts, buttonHandler }) => {
 					<div className='delete-and-gap'>
 						<button class='delete' id={person.id} onClick={buttonHandler}>
 							{/* html entity for multiplication symbol */}
-							&#215; 
+							<div>&#215;</div>
 						</button>
 						<div className='delete-gap'></div>
 					</div>

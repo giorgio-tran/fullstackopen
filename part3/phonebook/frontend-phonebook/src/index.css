@@ -129,7 +129,8 @@ input {
 }
 
 .delete {
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   width: 36px;
   height: 36px;
   background-image:linear-gradient(to top left, #9904D9, #6907F2);
