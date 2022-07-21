@@ -21,7 +21,7 @@ const PersonForm = ({onSub, name, nameFn, num, numFn}) => {
                 />
             </div>
             <div className='add-parent'>
-                <button className='add' type="submit">add</button>
+                <button className='add' type="submit">enter</button>
             </div>
         </form>
     )
