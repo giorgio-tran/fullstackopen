@@ -20,8 +20,8 @@ const PersonForm = ({onSub, name, nameFn, num, numFn}) => {
                     onChange={numFn}
                 />
             </div>
-            <div>
-                <button type="submit">add</button>
+            <div className='add-parent'>
+                <button className='add' type="submit">add</button>
             </div>
         </form>
     )
