@@ -141,7 +141,7 @@ const App = () => {
 					<h2>Numbers</h2>
 					<Contacts
 						personsContacts={persons}
-						newFilterContacts={newFilter}
+						newFilterContacts={newFilter.toLowerCase()}
 						buttonHandler={handleRemoveContact}
 					/>
 				</div>
