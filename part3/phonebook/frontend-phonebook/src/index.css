@@ -30,7 +30,7 @@ input {
   background-image: linear-gradient(to bottom right, #6907f25b, #1E0D8C);
   box-sizing: border-box;
   border-radius: 15px;
-  box-shadow: 5px 10px 40px black;
+  box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.899);
   width: 70%;
   max-width: 800px;
   display: flex;
@@ -58,8 +58,8 @@ input {
   height: 20%;
   color: white;
   background: #1E0D8C;
-  border-style: solid;
-  border-radius: 5px;
+  border: 1px solid;
+  border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
@@ -70,7 +70,7 @@ input {
 }
 
 .error {
-  background: rgb(190, 85, 96);
+  background: #6907F2;
 }
 /* End notification */
 
