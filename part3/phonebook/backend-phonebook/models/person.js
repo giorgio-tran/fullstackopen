@@ -16,8 +16,8 @@ mongoose.connect(url)
 
 const val = [
 	{ validator: function(v) {
-		return v.length >= 8
-	}, message: 'Length of phone number is less than 8 characters.' },
+		return v.length >= 8 && v.length <= 15
+	}, message: 'Length of phone number must be between 8-15 characters' },
 	{ validator: function(v) {
 		//if - is present, it needs to be at index 2 or index 3
 		return !((v.indexOf('-') < 2 && v.indexOf('-') !== -1) || v.indexOf('-') > 3)
