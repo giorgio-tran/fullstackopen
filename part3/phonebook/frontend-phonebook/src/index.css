@@ -7,6 +7,11 @@ body {
   margin: 0;
 }
 
+input {
+  border: none;
+  background-color: #dce6f2ea;
+}
+
 /* App.js */
 /* Parent container */
 .parent-container {
@@ -49,7 +54,7 @@ body {
   width: 30%;
   height: 20%;
   color: white;
-  background: rgb(142, 205, 200);
+  background: #1E0D8C;
   border-style: solid;
   border-radius: 5px;
   padding: 10px;
