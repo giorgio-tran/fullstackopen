@@ -18,7 +18,7 @@ const Weather = ({country}) => {
                 setCheck(true)
                 setWeather(response.data)
             })
-    }, [])
+    }, [api_key, lat, lon])
 
     const weatherTemp = () => {
 		if (check === true) {
