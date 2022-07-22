@@ -1,9 +1,9 @@
 
 body {
   font-family: Montserrat, Helvetica, sans-serif;
-  background-image: linear-gradient(to top left, #6907F2, #dce6f2ea);
-  color: #DCE6F2;
-  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.512);
+  background-image: linear-gradient(to top left, #9904d976, #1E0D8C);
+  color: #1E0D8C;
+  /* text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.512); */
   padding: 0;
   margin: 0;
 }
@@ -12,7 +12,7 @@ input {
   border: none;
   background-color: #dce6f2ea;
   border-radius: 4px;
-  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.688);
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.300);
 }
 
 /* App.js */
@@ -27,10 +27,11 @@ input {
 }
 /*Container */
 .container {
-  background-image: linear-gradient(to bottom right, #6907f25b, #1E0D8C);
+  border: 3px solid #cbd4df;
+  background-color: #dce6f2;
   box-sizing: border-box;
   border-radius: 15px;
-  box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.899);
+  box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.600);
   width: 90vw;
   max-width: 800px;
   display: flex;
@@ -102,12 +103,12 @@ input {
 }
 
 .Contacts::-webkit-scrollbar-thumb {
-  background: #DCE6F2;
+  background: #b3bcc6;
   border-radius: 6px;
 }
 
 .Contacts::-webkit-scrollbar-track {
-  background:#1E0D8C;
+  background:#cbd4df;
 }
 
 .Contacts {
