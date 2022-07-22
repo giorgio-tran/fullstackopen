@@ -124,7 +124,7 @@ const App = () => {
 				<div className='left'>
 					<h2>Phonebook</h2>
 					<Filter 
-						filter={newFilter.toLowerCase()}
+						filter={newFilter}
 						fn={handleFilterChange}
 					/>
 					<h2>Add a new contact</h2>
