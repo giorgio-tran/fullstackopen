@@ -134,7 +134,7 @@ input {
   justify-content: center;
   width: 36px;
   height: 36px;
-  background-image:linear-gradient(to top left, #9904D9, #6907F2);
+  background-image:linear-gradient(to top left, #9904d9eb, #4d04e9c7);
   font-size: 1.6rem;
   font-weight: 100;
   color: white;
@@ -146,4 +146,9 @@ input {
 
 .delete-gap {
   width: 4px;
+}
+
+/* Animations */
+.add:hover, .delete:hover {
+  background-color: gray;
 }
