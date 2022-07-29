@@ -4,6 +4,8 @@ const express = require('express')
 const app = express()
 const Blog = require('./models/blog') 
 
+app.use(express.json())
+
 app.get('/', (req, res) => {
     res.send('<h1> Hello World! </h1>')
 })
@@ -17,14 +19,16 @@ app.get('/api/blogs', (request, response) => {
         })
 })
 
-app.post('api/blogs', (request, response) => {
+app.post('/api/blogs', (request, response) => {
     const body = request.body
 
-    if (body.content === undefined) {
-        return response.status(404).json({
+    if (!(body.title && body.author && body.url && body.likes)) {
+        console.log(body)
+        return response.status(400).json({
             error: 'content is missing'
         })
     }
+
     //creates a blog object based on schema
     const blog = new Blog({
         title: body.title,
