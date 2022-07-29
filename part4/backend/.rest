@@ -8,7 +8,7 @@ Content-Type: application/json
     "title": "Rocky Mountains",
     "author": "John Cena",
     "url": "google.com",
-    "likes": 20
+    "likes": "20"
 }
 
 ###

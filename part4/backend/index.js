@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { response } = require('express')
+const http = require('http')
 const express = require('express')
 const app = express()
 const Blog = require('./models/blog') 
@@ -42,7 +42,7 @@ app.post('/api/blogs', (request, response) => {
         .then(result => {
             response.status(201).json(result)
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log('ERROR:', error))
 })
 
 const PORT = 3001
