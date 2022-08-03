@@ -20,6 +20,22 @@ const favoriteBlog = (blogs) => {
     if (blogs.length == 0) {
         return 'There are no blogs'
     }
+
+    const blogLikes = blogs.map(blog => {
+        return blog.likes
+    })
+    
+    const maxBlogLikes = Math.max(...blogLikes)
+    console.log(maxBlogLikes)
+
+    const mostLikedBlogs = blogs.filter(blog => blog.likes === maxBlogLikes)
+    console.log(mostLikedBlogs)
+
+    return {
+        title: mostLikedBlogs[0].title,
+        author: mostLikedBlogs[0].author,
+        likes: mostLikedBlogs[0].likes
+    }
 }
 
 module.exports = {

@@ -47,6 +47,12 @@ const blogs = [
   },
 ]
 
+const highestLikes = {
+  title: "Canonical string reduction",
+  author: "Edsger W. Dijkstra",
+  likes: 12,
+}
+
 /* Tests */
 describe('dummy test', () => {
   test('dummy returns one', () => {
@@ -80,5 +86,10 @@ describe('favorite blog', () => {
   test('when list is zero', () => {
     const result = listHelper.favoriteBlog(listWithZeroBlogs)
     expect(result).toBe('There are no blogs')
+  })
+
+  test('of a big list', () => {
+    const result = listHelper.favoriteBlog(blogs)
+    expect(result).toEqual(highestLikes)
   })
 })
