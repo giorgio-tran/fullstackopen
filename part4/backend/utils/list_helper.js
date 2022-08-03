@@ -16,7 +16,14 @@ const totalLikes = (blogs) => {
     )
 }
 
+const favoriteBlog = (blogs) => {
+    if (blogs.length == 0) {
+        return 'There are no blogs'
+    }
+}
+
 module.exports = {
     dummy,
-    totalLikes
+    totalLikes,
+    favoriteBlog
 }
