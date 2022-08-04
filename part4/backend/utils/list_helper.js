@@ -38,8 +38,34 @@ const favoriteBlog = (blogs) => {
     }
 }
 
+const mostBlogs = (blogs) => {
+    if (blogs.length === 0) {
+        return 'There are no blogs'
+    }
+    //credits: https://www.geeksforgeeks.org/frequent-element-array/
+    const hash = new Map()
+
+    for (let i = 0; i < blogs.length; i++) {
+        if (hash.has(blogs[i].author)) {
+            hash.set(blogs[i].author, hash.get(blogs[i].author) + 1)
+        }
+        else {
+            hash.set(blogs[i].author, 1)
+        }
+    }
+
+    let max_count = 0
+    let res = ''
+    hash.forEach((value, key) => {
+        if (max_count < value) {
+            res = key
+            max_count = value
+        }
+    })
+}
+
 module.exports = {
     dummy,
     totalLikes,
-    favoriteBlog
+    favoriteBlog,
 }
