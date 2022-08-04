@@ -69,6 +69,39 @@ const mostBlogs = (blogs) => {
     }
 }
 
+const mostLikes = (blogs) => {
+    if (blogs.length === 0) {
+        return null
+    }
+
+    const hash = new Map()
+    for (let i = 0; i < blogs.length; i++) {
+        const author = blogs[i].author
+        const likes = blogs[i].likes
+
+        if (hash.has(author)) {
+            hash.set(author, hash.get(author) + likes)
+        }
+        else {
+            hash.set(author, likes)
+        }
+    }
+
+    let mostLikedAuthor = ''
+    let totalLikes = 0
+    hash.forEach((value, key) => {
+        if (totalLikes < value) {
+            mostLikedAuthor = key
+            totalLikes = value
+        }
+    })
+    
+    return {
+        author: mostLikedAuthor,
+        likes: totalLikes
+    }
+}
+
 module.exports = {
     dummy,
     totalLikes,
