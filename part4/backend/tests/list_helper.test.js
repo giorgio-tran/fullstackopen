@@ -38,6 +38,14 @@ const blogs = [
     __v: 0
   },
   {
+    _id: "5a422b3a1b54a676234d17f8",
+    title: "Something made up",
+    author: "Edsger W. Dijkstra",
+    url: "http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html",
+    likes: 12,
+    __v: 0
+  },
+  {
     _id: "5a422b891b54a676234d17fa",
     title: "First class tests",
     author: "Robert C. Martin",
@@ -77,7 +85,7 @@ describe('total likes', () => {
 
   test('of a bigger list is calculated right', () => {
     const result = listHelper.totalLikes(blogs)
-    expect(result).toBe(7 + 5 + 12 + 10)
+    expect(result).toBe(7 + 5 + 12 + 12 + 10)
   })
 
 })
@@ -91,5 +99,17 @@ describe('favorite blog', () => {
   test('of a big list', () => {
     const result = listHelper.favoriteBlog(blogs)
     expect(result).toEqual(highestLikes)
+  })
+})
+
+describe('most blogs', () => {
+  test('when list is zero', () => {
+    const result = listHelper.mostBlogs(listWithZeroBlogs)
+    expect(result).toBe('There are no blogs')
+  })
+
+  test('of a big list', () => {
+    const result = listHelper.mostBlogs(blogs)
+    expect(result).toEqual({author: 'Edsger W. Dijkstra', blogs: 3})
   })
 })

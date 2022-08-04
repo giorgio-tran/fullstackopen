@@ -62,10 +62,16 @@ const mostBlogs = (blogs) => {
             max_count = value
         }
     })
+
+    return {
+        author: res,
+        blogs: max_count
+    }
 }
 
 module.exports = {
     dummy,
     totalLikes,
     favoriteBlog,
+    mostBlogs
 }
