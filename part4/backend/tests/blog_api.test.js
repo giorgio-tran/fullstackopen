@@ -62,6 +62,21 @@ test('posting increases length by 1', async () => {
   console.log(response.body)
   expect(response.body).toHaveLength(initialBlogs.length + 1);
 })
+
+test('posting without likes property defaults likes to 0', async () => {
+  await api
+    .post('/api/blogs')
+    .send({
+      title: "Einz",
+      author: "Waalz",
+      url: "google.com",
+    })
+  
+  const response = await api.get('/api/blogs')
+  const addedBlog = response.body[response.body.length-1]
+  console.log(response.body)
+  expect(addedBlog.likes).toBe(0)
+})
 afterAll(() => {
   mongoose.connection.close()
 })
