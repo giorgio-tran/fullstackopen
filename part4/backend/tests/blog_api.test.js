@@ -48,6 +48,20 @@ test('unique identifier property is id', async () => {
   expect(firstBlogObject.id).toBeDefined()
 })
 
+test('posting increases length by 1', async () => {
+  await api
+    .post('/api/blogs')
+    .send({
+      title: "Bored", 
+      author: "Shaman", 
+      url: "google.com", 
+      likes: 5
+    })
+
+  const response = await api.get('/api/blogs')
+  console.log(response.body)
+  expect(response.body).toHaveLength(initialBlogs.length + 1);
+})
 afterAll(() => {
   mongoose.connection.close()
 })
