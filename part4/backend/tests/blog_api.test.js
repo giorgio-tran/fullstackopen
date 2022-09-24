@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const supertest = require('supertest')
+const { post } = require('../app')
 const app = require('../app')
 /* creates a superagent object with app.js,
  which is used for testing */
@@ -77,6 +78,13 @@ test('posting without likes property defaults likes to 0', async () => {
   console.log(response.body)
   expect(addedBlog.likes).toBe(0)
 })
+
+test('title and url missing responds with status code 400', async () => {
+  await api
+    .post('/api/blogs')
+    .send({})
+    .expect(400)
+}) 
 afterAll(() => {
   mongoose.connection.close()
 })

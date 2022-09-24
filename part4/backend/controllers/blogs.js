@@ -23,6 +23,10 @@ blogsRouter.post('/', (request, response, next) => {
     const body = request.body
     let blog = null;
 
+    if (!body.title || !body.url) {
+      return response.status(400).end()
+    }
+    
     if (!body.likes) {
       blog = new Blog({
         title: body.title,
@@ -39,7 +43,6 @@ blogsRouter.post('/', (request, response, next) => {
       })
     } 
     
-
     blog.save()
         .then(savedBlog => {
             response.json(savedBlog)
