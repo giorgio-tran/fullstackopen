@@ -1,3 +1,3 @@
-# LINK TO APP VIA HEROKU
+# LINK TO APP VIA FLY.IO
 
-https://phonebook-fso2022-gt.herokuapp.com/
+https://phonebook-fso-gt.fly.dev/
