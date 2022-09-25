@@ -16,3 +16,14 @@ GET http://localhost:3001/api/blogs
 
 ###
 DELETE http://localhost:3001/api/blogs/632e5b542273cdfae6491c03
+
+###
+PUT http://localhost:3001/api/blogs/62e43b792356c1eba132dc1c
+Content-Type: application/json
+
+{
+  "title": "Hi",
+  "author": "jack",
+  "url": "Google.com",
+  "likes": "30"
+}
