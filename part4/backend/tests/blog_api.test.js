@@ -91,7 +91,7 @@ test('title and url missing responds with status code 400', async () => {
     .expect(400)
 }) 
 
-describe('deletion of a note', () => {
+describe('deletion of a blog', () => {
   test('succeeds with status code 204 if id is valid', async () => {
     const blogs = await blogsInDb()
     const blogToDelete = blogs[0]
@@ -104,6 +104,27 @@ describe('deletion of a note', () => {
     const idOfBlogs = blogsAfterDeletion.map(blog => blog.id)
 
     expect(idOfBlogs).not.toContain(blogToDelete.id)
+  })
+})
+
+describe('updating a blog', () => {
+  test('id has different amount of likes', async () => {
+    const blogs = await blogsInDb()
+    const firstBlog = blogs[0]
+    console.log('first blog', firstBlog)
+
+    await api
+      .put(`/api/blogs/${firstBlog.id}`)
+      .send({
+        title: "Bonobo",
+        author: "Ape",
+        url: "mozilla.org",
+        likes: 1
+      })
+
+    const blogsAfterPut = await blogsInDb()
+    const firstBlogAfterPut = blogsAfterPut[0]
+    expect(firstBlogAfterPut).not.toEqual(firstBlog)
   })
 })
 
