@@ -30,6 +30,11 @@ beforeEach(async () => {
   blogObject = new Blog(initialBlogs[1])
   await blogObject.save()
 }, 100000)
+//gets data from database and converts to json
+const blogsInDb = async () => {
+  const blogs = await Blog.find({})
+  return blogs.map(blog => blog.toJSON())
+}
 
 test('blogs are returned as json', async () => {
   await api
@@ -85,6 +90,23 @@ test('title and url missing responds with status code 400', async () => {
     .send({})
     .expect(400)
 }) 
+
+describe('deletion of a note', () => {
+  test('succeeds with status code 204 if id is valid', async () => {
+    const blogs = await blogsInDb()
+    const blogToDelete = blogs[0]
+
+    await api
+      .delete(`/api/blogs/${blogToDelete.id}`)
+      .expect(204)
+    
+    const blogsAfterDeletion = await blogsInDb()
+    const idOfBlogs = blogsAfterDeletion.map(blog => blog.id)
+
+    expect(idOfBlogs).not.toContain(blogToDelete.id)
+  })
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
